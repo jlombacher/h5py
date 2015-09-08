@@ -53,11 +53,20 @@ except ImportError:
 try:
     # support >=ipython-0.11
     from IPython.utils import generics
-    from IPython import TryNext
 except ImportError:
     # support <ipython-0.11
     from IPython import generics
-    from IPython.ipapi import TryNext
+try:
+    # support >=ipython-4.0
+    from IPython.core.error import TryNext
+except ImportError:
+    try:
+        # support >=ipython-0.11
+        from IPython import TryNext
+    except ImportError:
+        # support <ipython-0.11
+        from IPython.ipapi import TryNext
+
 
 import readline
 
